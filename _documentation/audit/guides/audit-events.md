@@ -30,7 +30,7 @@ The following table lists currently supported Audit Event types:
 | NUMBER_USER_CANCELED | Number was canceled by the user |
 | NUMBER_UPDATED | Number updated |
 | NUMBER_LINKED | Number linked to Nexmo application |
-| NUMBER_UNLINKED | Number unlinked to Nexmo application |
+| NUMBER_UNLINKED | Number unlinked from Nexmo application |
 | USER_API_KEYS_UPDATE | Sub-accounts for user updated |
 | USER_BILLING_UPDATE | User billing updated |
 | USER_CREATE | User created |
