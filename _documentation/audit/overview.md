@@ -65,7 +65,16 @@ An example audit event object is 'updating a number' which has `event_type` of `
 
 ## Getting Started
 
-This example shows you how to get started with the Audit API. It will retrieve a list of audit events:
+This example shows you how to get started with the Audit API. It demonstrates how to retrieve a list of audit events.
+
+You will need to ensure that the following replaceable values are set in the example code using any convenient method:
+
+Key | Description
+-- | --
+`NEXMO_API_KEY` | Your Nexmo API key.
+`NEXMO_API_SECRET` | Your Nexmo API secret.
+
+> In the following example the _Create an application_ and _Initialize your dependencies_ procedures are optional.
 
 ```building_blocks
 source: '_examples/audit/get-events'

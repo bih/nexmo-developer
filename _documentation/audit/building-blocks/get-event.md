@@ -9,7 +9,7 @@ In this building block you see how to get a single audit event, referenced by it
 
 ## Example
 
-Ensure that the following variables are set using any convenient method:
+You will need to ensure that the following replaceable values are set in the example code using any convenient method:
 
 Key | Description
 -- | --
@@ -17,6 +17,7 @@ Key | Description
 `NEXMO_API_SECRET` | Your Nexmo API secret.
 `EVENT_UUID` | The UUID of the audit event you want to retrieve.
 
+> In the following example the _Create an application_ and _Initialize your dependencies_ procedures are optional.
 
 ```building_blocks
 source: '_examples/audit/get-event'
