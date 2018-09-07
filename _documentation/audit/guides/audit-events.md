@@ -16,6 +16,8 @@ The following table lists currently supported Audit Event types:
 |----|----|
 | ACCOUNT_UPDATE_SETTINGS | Account Settings updated |
 | ACCOUNT_UPDATE_SETTINGS_API | Account Settings updated via API |
+| ACCOUNT_SECRET_CREATE | Secret Rotation operation |
+| ACCOUNT_SECRET_DELETE | Secret Rotation operation |
 | APP_CREATE | App created |
 | APP_DELETE | App deleted |
 | APP_DISABLE | App disabled |
@@ -25,13 +27,16 @@ The following table lists currently supported Audit Event types:
 | AUTORELOAD_ENABLE | Autoreload enabled |
 | AUTORELOAD_UPDATE | Autoreload settings updated |
 | NUMBER_ASSIGN | Number assigned |
-| NUMBER_RELEASE | Number released |
+| NUMBER_USER_CANCELED | Number was canceled by the user |
 | NUMBER_UPDATED | Number updated |
+| NUMBER_LINKED | Number linked to Nexmo application |
+| NUMBER_UNLINKED | Number unlinked to Nexmo application |
 | USER_API_KEYS_UPDATE | Sub-accounts for user updated |
 | USER_BILLING_UPDATE | User billing updated |
 | USER_CREATE | User created |
 | USER_LOGIN | User login **(Premium Support only)** |
 | USER_LOGOUT | User logout **(Premium Support only)** |
+| USER_PRODUCT_SEARCH | Relates to searching for [CDRs](/concepts/guides/glossary#cdr) or logs in Dashboard |
 | USER_STATUS | User status updated |
 | USER_UPDATE | User updated |
 | IP_WHITELIST_CREATE | Whitelist IP added |
