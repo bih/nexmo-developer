@@ -70,10 +70,6 @@ Run the command in a shell. The call will retrieve a list of supported audit eve
       "description": "Account secret created"
     },
     {
-      "type": "ACCOUNT_UPDATE_SPAMMER",
-      "description": "Messaging Account Banned"
-    },
-    {
       "type": "ACCOUNT_UPDATE_SETTINGS_API",
       "description": "Account Settings updated via API"
     },
@@ -86,8 +82,8 @@ Run the command in a shell. The call will retrieve a list of supported audit eve
       "description": "Number updated"
     },
     {
-      "type": "NUMBER_RELEASE",
-      "description": "Number released"
+      "type": "NUMBER_USER_CANCELED",
+      "description": "Number canceled by user"
     },
     {
       "type": "NUMBER_LINKED",
