@@ -21,4 +21,3 @@ Media events will fire in a Conversation when media state changes for a member. 
 ## Member Media Events
 
 Media events will fire on a Member when media state changes for a member. This can be when a Video stream is started or ended.
-
