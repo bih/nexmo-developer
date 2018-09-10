@@ -1,5 +1,7 @@
 ---
-title: JWT and ACL overview
+title: Overview of JWT and ACL
+description: Introduction to JWTs and ACLs.
+navigation_weight: 1
 ---
 
 # JWT and ACL overview
