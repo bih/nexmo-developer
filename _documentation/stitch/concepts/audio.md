@@ -14,10 +14,6 @@ Audio communication in Stitch can take place via three main methods:
 
 Audio streams can be enabled and disabled in a Conversation so that Members can communicate with voice.
 
-## Media Events
-
-Media events will fire in a Conversation when media state changes for a member. This can be when an Audio stream is started or ended.
-
 ## App to App
 
 In this scenario communication takes place over IP. Your application provides a means for Users to connect to a conversation.
@@ -45,7 +41,7 @@ Note the type of endpoint is `app`, which is a Stitch app.
 
 ## App to Phone
 
-In this scenario your app would take your destination number, and make the call using the Stitch call API. This will automatically call into your Stitch Nexmo application. The number you provide to your app, and part of the Stitch call, would be passed to the `to` query parameter of the answer URL of your Stitch Nexmo Application. Your Nexmo Stitch Application would then forward to your `to_number` using an NCCO. The following code demonstrates this:
+In this scenario your app would take your destination number, and make the call using the Stitch call API. This will automatically call into your Stitch Nexmo application. The number you provide to your app is passed to the `to` query parameter of the answer URL of your Stitch Nexmo Application. Your Nexmo Stitch Application would then forward to your `to_number` using an NCCO. The following code provides an example of a simple server that would forward the call:
 
 ``` javascript
 'use strict';
@@ -68,7 +64,7 @@ app.get('/webhooks/answer', (req, res) => {
     var ncco = [
     {
       action: "talk",
-      text: "Forwarding you to Tony"
+      text: "Forwarding you to your destination"
     },
     {
       "action": "connect",
@@ -88,3 +84,11 @@ const server = app.listen(9000, () => {
   console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
 });
 ```
+
+## Media Events
+
+Media events will fire in a Conversation when media state changes for a Member. This can be when an Audio stream is started or ended.
+
+## References
+
+* [NCCO reference](/voice/voice-api/ncco-reference)

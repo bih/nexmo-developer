@@ -6,19 +6,19 @@ navigation_weight: 4
 
 # Members
 
-Memberships connect users with conversations. Each membership has one conversation and one user however a user can have many memberships to conversations just as conversations can have many members.
+Memberships connect users with Conversations. When a User joins a Conversation a Member is created. Each Membership has one Conversation and one User. However, a User can have many Memberships to Conversations just as Conversations can have many Members.
 
-When a User joins a Conversation a Member is created.
-
-Each member has a unique Member ID of the form:
+Each Member has a unique Member ID of the form:
 
 ```
 MEM-df8e57d8-1c8e-4573-bf4d-29d5414dcb42
 ```
 
+Memberships can be created in various ways: via the REST API, using the functions provided by the SDKs, or using the command line.
+
 ## Adding a Member to a Conversation
 
-You can add a User into a Conversation on the command-line as follows:
+You can add a User into a Conversation (creating a Member) on the command-line as follows:
 
 ``` shell
 $ nexmo member:add YOUR_CONVERSATION_ID action=join channel='{"type":"app"}' user_id=YOUR_USER_ID
@@ -32,12 +32,12 @@ You can view the Members of a Conversation with the command:
 $ nexmo member:list CON-35663e9d-687f-4e5c-bd37-91837294bd76 -v
 ```
 
-Would return something similar to the following:
+This returns output similar to the following:
 
 ``` shell
 name  | user_id                                  | user_name | state
 ----------------------------------------------------------------------
-Tony  | USR-fa1acfbb-0087-4fa5-911d-045586470edc | Tony      | JOINED
+pete  | USR-fa1acfbb-0087-4fa5-911d-045586470edc | pete      | JOINED
 alice | USR-cf0e4ff6-fd86-4d4a-9a90-282a59593480 | alice     | INVITED
 bobby | USR-6a8cb033-e8fc-482f-8404-63085ab984d6 | bobby     | LEFT
 bobby | USR-6a8cb033-e8fc-482f-8404-63085ab984d6 | bobby     | JOINED
