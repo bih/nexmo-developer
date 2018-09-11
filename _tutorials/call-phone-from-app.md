@@ -1,7 +1,7 @@
 ---
 title: Call phone from app
 products: stitch
-description: Call a phone from an app. This is the simple version.
+description: "Call a phone from an app. This is the simple version."
 languages:
     - Node
 ---
