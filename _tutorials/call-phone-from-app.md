@@ -14,21 +14,19 @@ This tutorial presents a minimalistic Stitch app that allows you to call a phone
 
 In this tutorial you see how to build a Stitch application that can call a phone:
 
-1. Install command line tool (Beta)
+1. Install Nexmo Command Line Tool (Beta)
 2. Create a Nexmo Application
-3. Buy a number
-4. Link a number
-5. Create a webhook server
-6. Install Stitch
-7. Create a JWT
-8. Create a Stitch app using Node
+3. Create a webhook server
+4. Install Stitch
+5. Create a JWT
+6. Create a Stitch app using Node
 
 ## Prerequisites
 
 In order to work through this tutorial you need:
 
 * A [Nexmo account](https://dashboard.nexmo.com/sign-up)
-* A publicly accessible web server so Nexmo can make webhook requests to your app. If you're developing locally you can use [ngrok](https://ngrok.com/).
+* A publicly accessible web server so Nexmo can make webhook requests to your app. If you're testing locally you can use [ngrok](https://ngrok.com/).
 
 ## Install Nexmo Command Line Interface (CLI) Beta
 
@@ -46,11 +44,13 @@ You now need to initialize your project directory:
 $ nexmo setup api_key api_secret
 ```
 
-This will create a `.nexmorc` file in your project directory. This is required for other command line operations to work correctly.
+This will create a `.nexmorc` file in your home directory. This is required for other command line operations to work correctly.
+
+You can obtain your API key and API secret from your Nexmo dashboard.
 
 ## Create a Nexmo Application
 
-To create a voice application within the Nexmo platform you execute the following command:
+To create a Stitch application within the Nexmo platform you execute the following command:
 
 ``` bash
 $ nexmo app:create "Call phone from App" https://example.com/webhooks/answer https://example.com/webhooks/event --type=rtc --keyfile=private.key
@@ -71,27 +71,7 @@ The parameters to the `app:create` command are as follows:
 * Event webhook URL that Nexmo will call back on with details of events.
 * The name of the generated private key to be associated with the application.
 
-## Buy a Phone Number
-
-For your application to function you need two or more numbers that are placed in adverts. Buy a number as follows using the Nexmo CLI:
-
-```bash
-$ nexmo number:buy --country_code GB --confirm
-```
-
-This will return the Nexmo number purchased:
-
-``` bash
-Number purchased: 447700900000
-```
-
-## Link the Phone Number to your Nexmo Application
-
-Associate the newly purchased number with the application you've created. This ensures that your application's webhook endpoints are informed when the number is called or any event takes place relating to the number. You can associate a number with your Nexmo application with the following command:
-
-``` bash
-$ nexmo link:app 447700900000 5555f9df-05bb-4a99-9427-6e43c83849b8
-```
+> **Note:** The actual values you use for the Event webhook URL and the Answer webhook URL will depend on whether you are hosting your webhook server on the web or testing locally using Ngrok.
 
 ## Create a webhook server
 
@@ -159,6 +139,22 @@ npm install nexmo-stitch
 
 ## Create a JWT
 
+First create a User:
+
+``` bash
+$ nexmo user:create name="USER"
+```
+
+This will create a user and return a User ID:
+
+``` bash
+User created: USR-aaaaaaaa-bbbb-cccc-dddd-0123456789ab
+```
+
+You will only need the user name to generate the JWT.
+
+Then generate a JWT user your `NEXMO_APPLICATION_ID` and your user's name:
+
 ``` bash
 USER_JWT="$(nexmo jwt:generate ./private.key sub=USER exp=$(($(date +%s)+86400)) acl='{"paths":{"/v1/users/**":{},"/v1/conversations/**":{},"/v1/sessions/**":{},"/v1/devices/**":{},"/v1/image/**":{},"/v3/media/**":{},"/v1/applications/**":{},"/v1/push/**":{},"/v1/knocking/**":{}}}' application_id=NEXMO_APPLICATION_ID)"
 ```
@@ -168,6 +164,16 @@ You can see the generated JWT using:
 ``` bash
 $ echo USER_JWT
 ```
+
+Will return the generated JWT (not all of the JWT is shown in order to save space):
+
+``` bash
+eyJhbGc...II8B6TbFTvfu4btPtzSHYkzg
+```
+
+You will copy and paste the value for the JWT into your app in the next step.
+
+You can validate your JWT at [jwt.io](https://jwt.io).
 
 ## Create your Stitch app
 
@@ -244,7 +250,7 @@ Here's the complete code:
 The code does the following:
 
 1. A simple form is created with a label and a button for entering submitting the destination number.
-2. You set a JWT which you generated in a previous step. In a real-world application you would have some authetication logic to set this for a user.
+2. You set a JWT which you generated in a previous step. In a real-world application you would have some authentication logic to set this for a user.
 3. You set up your event handlers so that a call is made when the call button is clicked.
 4. This app also logs out some call state changed - specifically `member:call` and `call:status:changed`. Other logic could be added here, but to keep things simple these call state change handlers simply log out information about the call to the console.
 
