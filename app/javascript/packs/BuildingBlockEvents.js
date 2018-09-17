@@ -5,8 +5,7 @@ export default () => {
     // Track copy to clipboard usage
     var clipboard = new Clipboard('.copy-button',{
         text: function(trigger) {
-            const lang = $(trigger).attr("data-lang");
-            return $(".copy-to-clipboard." + lang).text();
+            return $(trigger).next().text();
         }
     });
 
@@ -16,11 +15,14 @@ export default () => {
         let params = {
             "language": trigger.attr("data-lang"),
             "block": trigger.attr("data-block"),
+            "section": trigger.attr("data-section"),
             "event": "copy"
         };
 
+        let key = params['language'] + params['section'];
+
         // We only want to track each copy once per page load
-        if (hasTriggeredCopyStat[params['language']]) { return true; }
+        if (hasTriggeredCopyStat[key]) { return true; }
 
         trigger.find('span').text('Copied');
 
@@ -30,7 +32,7 @@ export default () => {
                 return Promise.reject({ message: 'Bad response from server', response })
             })
             .then((payload) => {
-                hasTriggeredCopyStat[params['language']] = true;
+                hasTriggeredCopyStat[key] = true;
             })
     });
 
@@ -50,12 +52,13 @@ export default () => {
         let params = {
             "language": trigger.attr("data-lang"),
             "block": trigger.attr("data-block"),
-            "event": "source-" + type
+            "section": type,
+            "event": "source"
         };
 
-        hasTriggeredLinkStat[params['language']] = hasTriggeredLinkStat[params['language']] || {};
+        let key = params['language'] + params['section'];
 
-        if (hasTriggeredLinkStat[params['language']][type]) { return true; }
+        if (hasTriggeredLinkStat[key]) { return true; }
 
         fetch(createRequest(params))
             .then((response) => {
@@ -63,7 +66,7 @@ export default () => {
                 return Promise.reject({ message: 'Bad response from server', response })
             })
             .then((payload) => {
-                hasTriggeredLinkStat[params['language']][type] = true;
+                hasTriggeredLinkStat[key] = true;
             })
     });
 };

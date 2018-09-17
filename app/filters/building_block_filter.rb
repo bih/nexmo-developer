@@ -8,6 +8,7 @@ class BuildingBlockFilter < Banzai::Filter
       @renderer = get_renderer(config['language'])
 
       lexer = CodeLanguageResolver.find(config['language']).lexer
+      lang = config['title'].delete('.')
 
       application_html = generate_application_block(config['application'])
 
@@ -34,7 +35,6 @@ class BuildingBlockFilter < Banzai::Filter
         client_html = ERB.new(erb).result(binding)
       end
 
-      lang = config['title'].delete('.')
       erb = File.read("#{Rails.root}/app/views/building_blocks/_write_code.html.erb")
       code_html = ERB.new(erb).result(binding)
 
