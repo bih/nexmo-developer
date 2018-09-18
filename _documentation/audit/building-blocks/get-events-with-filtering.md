@@ -9,7 +9,7 @@ In this building block you see how to get a list of audit events with filtering.
 
 ## Parameters
 
-You can filter the list of event objects returned by using query parameters. The parameters than can be specified are shown in the following table:
+You can filter the list of event objects returned by using query parameters. The parameters that can be specified are shown in the following table:
 
 Query Parameter | Description
 --- | ---

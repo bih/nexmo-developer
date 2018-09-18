@@ -6,14 +6,13 @@ description: The Audit API overview.
 
 # Audit API Overview
 
-The Nexmo Audit API allows you to track events. These events are activities created by using the API or by interacting with the Nexmo Dashboard. The Audit API allows you to monitor your Nexmo account.
+The Nexmo Audit API enables you to monitor your account by tracking events. These events are generated when your account users work with the SDKs or interact with the Nexmo Dashboard.
 
 With this API you can:
 
 * Retrieve a list of Audit events.
 * Retrieve a specific Audit event.
-
-It is possible to filter the events retrieved based on parameters such as date, user ID, and event type.
+* Filter events by parameters such as date, user ID, and event type.
 
 ## Beta
 
@@ -21,7 +20,7 @@ This API is currently in Beta.
 
 Nexmo always welcomes your feedback. Your suggestions help us improve the product. If you do need help, please email [support@nexmo.com](mailto:support@nexmo.com) and include Audit API in the subject line. Please note that during the Beta period support times are limited to Monday to Friday.
 
-During Beta Nexmo may expand the capabilities of the Audit API.
+During the Beta period Nexmo may expand the capabilities of the Audit API.
 
 ## Contents
 
@@ -38,7 +37,7 @@ In this document you can learn about:
 
 ### Authentication
 
-Interactions with the Audit API are authenticated using Basic Authentication. Basic Authentication allows you to use your `NEXMO_API_KEY` and `NEXMO_API_SECRET` to validate your API requests. For more information see [authenticating your applications](/concepts/guides/authentication).
+Interactions with the Audit API are authenticated using Basic Authentication. Basic Authentication allows you to use your `NEXMO_API_KEY` and `NEXMO_API_SECRET` to validate your API requests. For more general information on authentication see [Authentication](/concepts/guides/authentication).
 
 ### Audit Events
 
@@ -56,10 +55,27 @@ An example audit event object is 'updating a number' which has `event_type` of `
 
 ``` json
 {
-  "country":"GB",
-  "msisdn":"447700900000",
-  "voice-type":"app",
-  "voice-value":"aaaaaaaa-bbbb-cccc-dddd-0123456789ab"
+  "_links": {
+    "self": {
+      "href": "http://api.nexmo.com/beta/audit/events/aaaaaaaa-bbbb-cccc-dddd-0123456789ab"
+    }
+  },
+  "id": "aaaaaaaa-bbbb-cccc-dddd-0123456789ab",
+  "event_type": "NUMBER_UPDATED",
+  "event_type_description": "Number updated",
+  "created_at": "2018-08-13T10:15:31",
+  "account_id": "abcd1234",
+  "source": "DEVAPI",
+  "source_ip": "154.59.142.233",
+  "source_description": "Developer API",
+  "source_country": "GB",
+  "context": {
+    "country": "GB",
+    "msisdn": "447700900000",
+    "voice-type": "sip",
+    "voice-value": "sip:user@example12.com",
+    "accountId": "abcd1234"
+  }
 }
 ```
 

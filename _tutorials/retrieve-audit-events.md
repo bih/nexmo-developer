@@ -6,17 +6,20 @@ languages:
     - Curl
 ---
 
-# Audit - Retrieve audit events
+# Retrieve audit events
 
-It is possible to retrieve a record of all audit events associated with your Nexmo account. You can also filter this list based on dates, keyword, user and event type.
+You can retrieve a record of all audit events associated with your Nexmo account. You can also filter this list based on dates, keyword, user and event type.
 
 ## In this tutorial
 
 You will see how to retrieve a filtered list of audit events:
 
-* [Retrieve a list of audit events](#retrieve-a-list-of-audit-events)
-* [Retrieve a filtered list of audit events](#retrieve-a-filtered-list-of-audit-events)
-* [Retrieve a specific audit event](#retrieve-a-specific-audit-event)
+- [Prerequisites](#prerequisites)
+- [Retrieve a list of audit events](#retrieve-a-list-of-audit-events)
+- [Retrieve a filtered list of audit events](#retrieve-a-filtered-list-of-audit-events)
+- [Retrieve a specific audit event](#retrieve-a-specific-audit-event)
+- [Conclusion](#conclusion)
+- [Resources](#resources)
 
 ## Prerequisites
 
@@ -73,7 +76,7 @@ $  curl "https://api.nexmo.com/beta/audit/events?date_from=2018-08-01&date_to=20
      -u 'NEXMO_API_KEY:NEXMO_API_SECRET'
 ```
 
-You can further filter based on `search_text`. For example to find all audit events contaning the text "password" you can enter the following command:
+You can further filter based on `search_text`. For example to find all audit events containing the text "password" you can enter the following command:
 
 ```
 $  curl "https://api.nexmo.com/beta/audit/events?search_text=password" \
@@ -97,5 +100,5 @@ Using the filtering capabilities of the Audit API you have complete control rega
 
 ## Resources
 
-* [Audit API docs](/audit)
+* [Audit API docs](/audit/overview)
 * [Audit API Reference](/api/audit)
