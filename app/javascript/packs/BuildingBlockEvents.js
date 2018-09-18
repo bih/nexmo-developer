@@ -34,6 +34,12 @@ export default () => {
             .then((payload) => {
                 hasTriggeredCopyStat[key] = true;
             })
+
+        // Can we point them to the dependencies too?
+        if (trigger.parent().hasClass("main-code")) {
+            trigger.parent().parent().find(".configure-dependencies").prepend("<span class='label label--small'>Don't forget me!</span>");
+        }
+
     });
 
 
